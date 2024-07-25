@@ -1,13 +1,13 @@
 //importar a biblioteca mysql2 e criar a conexão com o banco de dados
 
-const mysql = require('mysql2') //importar  pacote mysql2 para conectar
+const mysql = require('mysql2'); //importar  pacote mysql2 para conectar
 
 const db = mysql.createConnection({
     host:Process.env.DB_HOST, //endereço do servidor de Banco de Dados
     user:process.env.DB_USER, //nome de usuario para acessar o Banco de Dados
     password:process.env.DB_PASS, //senha do usuario para acessar o Banco de Dados
     database:process.env.DB_NAME //nome do Banco de Dados
-})
+});
 
 db.connect((err) => {
     if(err){
