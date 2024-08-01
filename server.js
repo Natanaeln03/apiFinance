@@ -1,13 +1,11 @@
-//importar as bibliotecas
 
 const dotenv = require('dotenv'); // Importa o pacote dotenv para gerenciar variáveis de ambiente
 
 //configurar as variáveis de ambiente
 
-dotenv.config(); // Carrega as variáveis definidas no arquivo .env para process.env 
-
+dotenv.config(); //  Carrega as variáveis definidas no arquivo '.env' para process.env(processos)
+ 
 //importar as bibliotecas
-
 const express = require('express'); // Importa o framework Express
 const cors = require('cors'); // Importa o pacote cors para permiƟr requisições de diferentes origens
 const bodyParser = require('body-parser'); // Importa o pacote body-parser para analisar o corpo das requisições HTTP 
@@ -24,7 +22,7 @@ const app = express(); // Inicializa uma nova aplicação Express
 app.use(cors()); // Habilita o CORS para todas as rotas
 app.use(bodyParser.json()); // Configura o body-parser para analisar requisições JSON 
 
-
+// Usar as rotas de transações para todas as requisições que começam com /api/transactions
 app.use('/api/transactions', transactionsRoutes);
 
 //Rota inicial para testar o servidor
