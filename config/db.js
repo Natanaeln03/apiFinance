@@ -6,8 +6,7 @@ const mysql = require('mysql2'); //importar  pacote mysql2 para conectar
 console.log('DB_HOST:', process.env.DB_HOST);
 console.log('DB_USER:', process.env.DB_USER);
 console.log('DB_PASS:', process.env.DB_PASS);
-console.log('DB_NAME:', process.env.DB_NAME);
-//depois pode apagar 
+console.log('DB_NAME:', process.env.DB_NAME); 
 
 
 const db = mysql.createConnection({
