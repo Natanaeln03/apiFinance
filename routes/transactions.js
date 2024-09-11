@@ -16,7 +16,7 @@ router.put('/:id',  authMiddleware, transactionsController.updateTransactionPut)
 //Definindo uma rota para atualizar uma trasação existente(substituição parcial)
 router.patch('/:id',  authMiddleware, transactionsController.updateTransactionPatch);
 
-//Definindo uma rota para atualizar uma trasação existente(substituição parcial)
+//Definindo uma rota para deletar uma transação
 router.delete('/:id',  authMiddleware, transactionsController.deleteTransaction);
 
 
