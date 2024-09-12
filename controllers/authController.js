@@ -1,10 +1,9 @@
 const crypto = require('crypto'); 
-
 const db = require('../config/db'); // Importa a configuração do banco de dados
 const bcrypt = require('bcrypt'); // Importa o bcrypt para criptografar senhas
 const jwt = require('jsonwebtoken'); // Importa o jsonwebtoken para gerar tokens JWT
-
 const sendEmail = require('../services/emailService').sendEmail;
+
 // Função para solicitar redefinição de senha
 const requestPasswordReset = async (req, res) => {
     const { email } = req.body;
@@ -13,6 +12,7 @@ const requestPasswordReset = async (req, res) => {
         if (user.length === 0) {
             return res.status(404).send('Usuário não encontrado');
         }
+
         const token = crypto.randomBytes(20).toString('hex'); // Gera um token aleatório
         const expireDate = new Date(Date.now() + 3600000); // 1 hora para expiração
         await db.promise().query('UPDATE users SET reset_password_token = ?, reset_password_expires = ? WHERE email = ?', [token, expireDate, email]);
