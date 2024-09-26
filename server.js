@@ -26,6 +26,9 @@ const app = express(); // Inicializa uma nova aplicação Express
 app.use(cors()); // Habilita o CORS para todas as rotas
 app.use(bodyParser.json()); // Configura o body-parser para analisar requisições JSON 
 
+//Servir arquivo estatico da pasta "public"
+app.use(express.static('public'))
+
 // Usar as rotas de transações para todas as requisições que começam com /api/transactions
 app.use('/api/transactions', transactionsRoutes); // Configura o servidor para usar as rotas de transações 
 
@@ -36,6 +39,7 @@ app.use('/api/auth', authRoutes); // Configura o servidor para usar as rotas de 
 
 app.get('/', (req, res) => {
     res.send(`Servidor está rodando na porta ${PORT}`); // Define uma rota inicial para testar o servidor 
+    res.sendFile(__dirname + 'public/index.html');
 });
 
 // Configura o servidor para escutar em uma porta específica
