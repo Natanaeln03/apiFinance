@@ -20,7 +20,7 @@
         <h2 class="content">SISTEMA SENAI FINANCE</h2>
         <p class="content">Para entrar no sistema, faça seu login utilizando email e senha.</p>
         
-        <form>
+        <form id="loginform">
             <div>
                 <div><label>Email:</label></div>
                 <div><input type="email" id="email" placeholder="email@email.com.br"></div>
@@ -42,7 +42,30 @@
             </div>
         </div>
     </form>
+<script> scr="api.js"</script>
+<script>
+    document.querySelector('#loginform').addEventListener('submit', async(event) => {
+        event.preventDefault(); //Impede o envio do formulario padrão 
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
 
+        //verificar se os campos estão preechidos
+        if(!email || !password) {
+            alert('Por favor, preechar todos os campos');
+            return;
+        }
+
+        const result = await login(email, password);
+
+        if(result.success) {
+            localStorage.setItem('token', result.token) //Armazena o token
+            window.location.href = 'sisfsgpe.html';
+        }else {
+            // Exiber mensagem de erro baseado na resposta da API
+            alert(result.message || 'Login falhou! Verifique suas credencias.');
+        }
+    })
+</script>
     
 </body>
 </html>
