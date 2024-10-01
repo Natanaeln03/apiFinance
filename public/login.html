@@ -20,52 +20,63 @@
         <h2 class="content">SISTEMA SENAI FINANCE</h2>
         <p class="content">Para entrar no sistema, faça seu login utilizando email e senha.</p>
         
-        <form id="loginform">
+        <form id="loginForm"> <!-- Adicionando o id "loginForm" -->
             <div>
                 <div><label>Email:</label></div>
-                <div><input type="email" id="email" placeholder="email@email.com.br"></div>
+                <div><input type="email" id="email" placeholder="email@email.com.br" required></div><!-- Adicionando o "required" -->
                 
                 <div><label>Senha:</label></div>
-                <div><input type="password" id="password" placeholder="digite sua senha"></div>
+                <div><input type="password" id="password" placeholder="digite sua senha" required></div><!-- Adicionando o "required" -->
             </div>
             
             <div>
                 <button class="rec" type="button">Recuperar Senha</button>
             </div>
-
+        
             <div>
                 <button class="btn" type="submit">Entrar</button>
             </div>
-
+        
             <div>
                 <a href="registrar.html"><button type="button" class="btn">Registrar</button></a>
             </div>
-        </div>
-    </form>
-<script> scr="api.js"</script>
-<script>
-    document.querySelector('#loginform').addEventListener('submit', async(event) => {
-        event.preventDefault(); //Impede o envio do formulario padrão 
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-
-        //verificar se os campos estão preechidos
-        if(!email || !password) {
-            alert('Por favor, preechar todos os campos');
-            return;
-        }
-
-        const result = await login(email, password);
-
-        if(result.success) {
-            localStorage.setItem('token', result.token) //Armazena o token
-            window.location.href = 'sisfsgpe.html';
-        }else {
-            // Exiber mensagem de erro baseado na resposta da API
-            alert(result.message || 'Login falhou! Verifique suas credencias.');
-        }
-    })
-</script>
+            
+        </form>
+    </div><!-- Movida a <div> -->
+    
+    <script src="api.js"></script> 
+    <!--Faz o link com o arquivo 'api.js', onde a função de (login) está implementada.-->
+    <script>
+        // Adiciona um listener ao formulário de login que intercepta o envio do formulário.
+        document.querySelector('#loginForm').addEventListener('submit', async (event) => {
+            event.preventDefault(); // Impede o comportamento padrão de envio do formulário para a página.
+        
+            // Obtém os valores dos campos de e-mail e senha do formulário.
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+        
+            // Verifica se os campos de e-mail e senha estão preenchidos. Caso contrário, exibe um alerta.
+            if (!email || !password) {
+                alert('Por favor, preencha todos os campos.');
+                return; // Interrompe a execução se os campos não estiverem preenchidos.
+            }
+        
+            // Chama a função de login e aguarda a resposta da API.
+            const result = await login(email, password);
+        
+            // Verifica se a resposta contém um token.
+            if (result.token) {
+                // Armazena o token JWT no localStorage para uso em futuras requisições autenticadas.
+                localStorage.setItem('token', result.token);
+        
+                // Redireciona o usuário para a página principal após o login bem-sucedido.
+                window.location.href = 'sisfsgpe.html';
+            } else {
+                // Exibe uma mensagem de erro personalizada se o login falhar.
+                alert(result.message || 'Login falhou! Verifique suas credenciais.');
+            }
+        });
+    </script>
     
 </body>
 </html>
