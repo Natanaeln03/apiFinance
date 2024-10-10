@@ -36,8 +36,40 @@
             <button class="btn" type="button">Editar</button>
             <button class="btn" type="button">Adicionar</button>
             <button class="btn" type="button">Remover</button>
+            <button class="btn" type="button">Sair</button>
         </div>
     </div>
+    
+    <script src="api.js"></script> 
+    <!--Faz o link com o arquivo 'api.js', que contem a função 'getTransactions()' responsavel por buscar as transações-->
+
+    <script>
+        //Função assíncrona para carregar e exibir as transações na tabela.
+        async function carregarTransacoes() {
+            //Obtém o Token JWT armazenado no localStorage, que é necessário para autencitação.
+            const token = localStorage.getItem('token');
+            console.log('Token armazenado:', token); // Adiciona um log para "verificar"(remover após testes) o token recuperado.
+            
+            //Chama a função 'getTransactions' que faz a requisição à API para obter todas as transações.
+            const transacoes = await getTransactions();
+            console.log('Transações carregadas:', transacoes); //Adiciona um log para verificar os dados carregados.
+
+            //Obtém o corpo da tabela onde as transações serão inseridas.
+            const tbody = document.getElementById('transacoesTableBody');
+            tbody.innerHTML = ''; //Limpa o conteúdo da tabela antes de adicionar as novas transações
+
+            //Verificar se a lista de trasações está vazia.
+            if(transacoes.length ===0) {
+                console.log('Nenhuma transação encontrada.') //Loga se não houver transações
+                const tr = document.createElement('tr'); // Cria uma nova linha na tabela.
+                tr.innerHTML = `<td colspan ="5">Nenhuma transação encontrada.</td>`; //Exibir uma mensagem informando que nao há transações
+                tbody.appendChild(tr); // Adiciona a linha na tabela.
+                return; //Sai da função, já que nao há transaçoes a serem exibidas.
+            }
+
+        }
+
+    </script>
     
   </body>
 </html>
