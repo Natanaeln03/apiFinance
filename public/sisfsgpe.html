@@ -67,7 +67,40 @@
                 return; //Sai da função, já que nao há transaçoes a serem exibidas.
             }
 
+            //Itera sobre a lista de transações e cria uma linha de tabela para cada transação
+            transacoes.forEach(transacao => {
+                const tr = document.createElement('tr'); //criar uma nova linha na tabela.
+                tr.innerHTML =
+                `<td>${new Date(transacao.date).toLocaleDateString()/*exibe a data formatada*/}</td>
+                <td>${transacao.amount /*Exibe o valor da transação*/}</td>
+                <td>${transacao.decription /*Exibe a descrição da transação*/}</td>
+                <td>${transacao.category /*Exibe a categoria da transação*/}</td>
+                <td>${transacao.account /*Exibe a conta relacionada à transação*/}
+                `;
+                tbody.appendChild(tr); //Adiciona a linha à tebela 
+            });
+
         }
+
+        document.getElementById('sairBtn').addEventListener('click', () => {
+            localStorage.removeItem('token');
+            window.location.href = 'index.html';
+        });
+
+        document.getElementById('editarBtn').addEventListener('click', () => {
+            window.location.href = 'sisfsgpeudate.html'
+        });
+
+        document.getElementById('adiciorBtn').addEventListener('click', () => {
+            window.location.href = 'sisfsgpeadd.html'
+        });
+
+        document.getElementById('removerBtn').addEventListener('click', () => {
+            window.location.href = 'sisfsgpedelete.html'
+        });
+
+        //Adiciona um evento que a função 'carregarTransacoes' quando o documento estiver totalmente carregado.
+        document.addEventListener('DOMContentloaded', carregarTransacoes);
 
     </script>
     

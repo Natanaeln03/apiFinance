@@ -97,3 +97,29 @@ async function getTransaction() {
 
     return response.json();
 }
+
+//função para adicionar (CREATE = CRIAR) uma nova transação
+async function addTransaction(transaction) {
+    try {
+        //Envia uma requisição POST para a rota '/transactions' da API, com o objeto de criar uma nova transação.
+        const response = await fetch(`${API_URL}/transactions`, {
+            method: 'POST', //Define o metodo HTML como POST, usado para enviar dados ao servidor.
+            headers: {
+                //Define o tipo de conteudo da requisição como JSON.
+                'Content-Type': 'application/json',
+                //inclui o token JWT no cabeçalho authorization para autenticar a requisição.
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+
+            //transforma o objeto transaction em uma strig json e envia no compo da requisição.
+            body: json.stringify(transaction)
+        });
+
+        //retornar um objeto indicando sucesso se a resposta for ok (status 200-299), ou falta
+        return response.ok ? {success: true} : {success: false};
+    }catch (error) {
+        console.error('Erro ao adicionar transação:', error);
+
+        return{success: false};
+    }
+}

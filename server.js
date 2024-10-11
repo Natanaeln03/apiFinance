@@ -38,9 +38,9 @@ app.use(express.static('public')); // Configura o middleware 'express.static' pa
 
 //Rota inicial para testar o servidor
 
-/*app.get('/', (req, res) => {
+app.get('/', (req, res) => {
   res.send(`Servidor está rodando na porta ${PORT}`); // Define uma rota inicial para testar o servidor
-});*/
+});
 
 
 // Define uma rota GET para o caminho raiz ('/'), que envia o arquivo 'index.html' da pasta 'public' como resposta ao cliente.

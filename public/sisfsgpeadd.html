@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <!-- Informações para o Navegador -->
+        <meta charset="UTF-8"> <!-- Define o conjunto de caracteres UTF-8 para suportar caracteres especiais -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Define a compatibilidade do navegador -->
+        <!-- Passa informações ao Navegador: 1 - para não ficar dando zoom, 2 - largura será a mesma do dispositivo, 3 - inicia visualização em 100% -->
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0">
+        <meta name="description" content="Programador Front-End, Senai."> <!-- Descrição do site -->
+        <meta name="keywords" content="HTML, CSS, JavaScript, Senai"> <!-- Palavras-chave para SEO -->
+        <meta name="author" content="Hilton Elias"> <!-- Autor do site -->
+        <!--Icone para Titulo do Site-->
+        <link rel="shortcut icon" href="images/favicon.svg" type="image/svg">
+        <!-- Título do Site -->
+    <title>Adicionar Transação</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="content">
+        <h2>Adicionar Nova Transação</h2>
+        <form id="addTransactionForm">
+            <div>
+                <label>Data:</label>
+                <input type="date" id="date" required>
+            </div>
+            <div>
+                <label>Valor:</label>
+                <input type="number" id="amount" required>
+            </div>
+            <div>
+                <label>Descrição:</label>
+                <input type="text" id="description" required>
+            </div>
+            <div>
+                <label>Categoria:</label>
+                <input type="text" id="category" required>
+            </div>
+            <div>
+                <label>Conta:</label>
+                <input type="text" id="account" required>
+            </div>
+            <button type="submit" class="btn">Adicionar</button>
+        </form>
+        <a href="sisfsgpe.html"><button class="btn">Voltar</button></a>
+    </div>
+    <script src="api.js"></script>
+    <!--faz o link com o arquivo 'api.js', que contem a função 'addTransaction()' responsavel por adicionar as transações-->
+
+    <script>
+        //adicionar um listener para o formulario de adicionar transação
+        document.querySelector('#addTransactionForm').addEventListener('submit', async(event) => {
+            event.preventDefault();
+
+            //obtem os valores do formulario
+            const date = document.getElementById('date').value;
+            
+        })
+    </script>
+
+    
+</body>
+</html>
